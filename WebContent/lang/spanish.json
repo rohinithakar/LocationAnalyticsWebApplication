@@ -1,0 +1,45 @@
+{
+	"title":"EventHub",
+	"heading":"EventHub",
+	"heading2part1":"Cumpleaeos",
+	"heading2part2":"Boda",
+	"heading2part3":"Navidad",
+	"home":"Casa",
+	"login":"Login",
+	"register":"Registro",
+	"myevents":"MisEventos",
+	"logout":"LogOut",
+	"punchline":"Planificacin de eventos Made Haga Simples",
+	"para1":"	EventHub es su ventanilla nica para planificar todos los eventos importantes de
+				su vida! Ofrecemos lista de cosas para ser atendidos antes de
+				cada da importante de su vida, de modo que usted puede disfrutar y apreciar
+				el da con sus seres queridos en lugar de preocuparse por la lista de tareas.
+				Haga clic en los enlaces de abajo para empezar! Deseo No encuentras lo
+				estas buscando? Djenos saber y vamos a trabajar en la mejora de
+				nuestros servicios.",
+	"birthday":"Cumpleaos",
+	"wedding":"Boda",
+	"newyear":"Ao Nuevo",
+	"bdayPara":"Los cumpleaos son diversin :) Deja que la preocupacin de la parte que proyecta a un lado y acaricie con su familia y amigos!",
+	"wedPara":"Haga de su boda memorable con la planificacin evento perfecto. Empieza aqu.",
+	"newyearPara":"Acuda a nosotros para planificar su evento de Ao Nuevo y Navidad. Bienvenido Ao Nuevo con estilo!",
+	"ins":"Arrastre las actividades planificadas de sugerencias a la Lista de tareas",
+	"eventName":"Nombre del Evento",
+	"suggestions":"Sugerencias",
+	"tasklist":"Mi Lista de Tareas",
+	"continue":"Continuar",
+	"taskName":"Nombre de Tarea",
+	"cost":"Costo Estimado ($)",
+	"chart":"Seleccione un estilo grfico",
+	"pie":"Grfico de sectores",
+	"donut":"Donut Tabla",
+	"update":"Actualizacin del Grfico",
+	"save":"Gurdelo",
+	"myEvent":"Mis Eventos Planificados",
+	"aboutUs":"Quienes somos",
+	"aboutUsPara1": "EventHub es un portal de gestion de eventos para el usuario para gestionar sus eventos importantes de la vida.
+					 Página web actual se extiende sobre el prototipo basico de aplicacion web con caracteristicas limitadas de lo que permite al usuario gestionar 
+					 sus eventos planificados de cumpleaños, boda y Ano Nuevo.",
+	"aboutUsPara2": "Alguna pregunta? Alguna sugerencia?",
+	"aboutUsPara3": "Escribanos a"
+}

@@ -1,0 +1,162 @@
+// Style for Home Page, Login and Registration
+// old purple color code #aa56ff
+
+body #d_header {
+	height: 106px;
+}
+
+body #d_header #heading {
+	width: 1020px;
+	height: 120px; color : #FFFFFF;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 32px;
+	margin: 0 auto;
+	position: relative;
+	background-color: #403B2E;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 6px;
+	border: "0";
+	color: #FFFFFF;
+}
+
+.bookflip-image {
+	max-width: 950px;
+	max-height:525px;
+}
+
+body .d_footer {
+	position: center;
+	text-align: center;
+	
+}
+
+.img_theme .text {
+    position:absolute;
+    top:10px;
+    left:20px;
+    width:300px;
+}
+
+.s_heading{
+margin-left: 20px;
+display: inline;
+}
+
+.ui-dialog-titlebar{
+	color:#FFFFFF;
+	background:#49bfc3;
+	font-size: 12px;
+}
+
+.ui-button-text{
+	color:#FFFFFF;
+	background:#49bfc3;
+	font-size: 12px;
+}
+
+.ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable{
+	max-width:850px;
+}
+
+.validateTips{
+	font-size: 12px;
+}
+
+form label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 100px;
+    font-size: 12px;
+    
+}
+
+input {
+  display: inline-block;
+  float: left;
+}
+
+.left {
+    width: 400px;
+    height:120px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    float: left;
+}
+.right {
+	width: 550px;
+    height:120px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    text-align: right;
+}
+
+#dialog-form1 input {
+	font-size:12px;
+}
+
+#login_form {
+	font-size:12px;
+}
+
+.slideShowImages { /* The following CSS rules are optional. */
+	    height: 200px;
+	    width: 100%;	    
+	    /*border: 1px gray solid;*/
+	    /*background-color: lightgray;*/
+}   
+  
+#slideShowImages img { /* The following CSS rules are optional. */
+       height: 300px;
+	    width: 100%;
+      /*border: 0.1em black solid;*/
+      padding: 3px;
+}
+
+
+
+#customers
+{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+width:550px;
+border-collapse:collapse;
+}
+#customers td, #customers th 
+{
+font-size:1em;
+border:1px solid #FFCCCC;
+padding:3px 7px 2px 7px;
+cursor:pointer;
+}
+
+#customers tr.data-row:hover {
+
+	color: #660066;
+}
+
+#customers th 
+{
+font-size:1.1em;
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#9933CC;
+color:#ffffff;
+}
+#customers tr.alt td 
+{
+color:#000000;
+background-color:#FFCCCC;
+}
+
+     
+    
+     .listBlock {float: left;}
+	#sortable1 { list-style-type: none; margin: 0; padding: 0; margin-left: 100px; background: #aa56ff; padding: 5px; width: 500px;width:80%;border: 1px transparent;}
+	#sortable2 { list-style-type: none; margin: 0; padding: 0; margin-right: 100px; background: #aa56ff; padding: 5px; width: 500px;width:80%;border: 1px transparent;}
+	#sortable1 li, #sortable2 li{ cursor: move; margin: 5px; padding: 5px; font-size: 1.2em; font-color: red; width: 350px;  background: transparent; background-color: white;}

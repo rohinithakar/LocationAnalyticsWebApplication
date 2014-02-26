@@ -1,0 +1,39 @@
+﻿{
+	"title":"EventHub",
+	"heading":"EventHub",
+	"heading2part1":"Cumpleaños",
+	"heading2part2":"Boda",
+	"heading2part3":"Navidad",
+	"home":"Casa",
+	"login":"Login",
+	"register":"Registro",
+	"myevents":"MisEventos",
+	"logout":"LogOut",
+	"punchline":"Planificación de eventos Made Haga Simples",
+	"para1":"	EventHub es su ventanilla única para planificar todos los eventos importantes de
+				su vida! Ofrecemos lista de cosas para ser atendidos antes de
+				cada día importante de su vida, de modo que usted puede disfrutar y apreciar
+				el día con sus seres queridos en lugar de preocuparse por la lista de tareas.
+				Haga clic en los enlaces de abajo para empezar! Deseo No encuentras lo
+				estas buscando? Déjenos saber y vamos a trabajar en la mejora de
+				nuestros servicios.",
+	"birthday":"Cumpleaños",
+	"wedding":"Boda",
+	"newyear":"Año Nuevo",
+	"bdayPara":"Los cumpleaños son diversión :) Deja que la preocupación de la parte que proyecta a un lado y acaricie con su familia y amigos!",
+	"wedPara":"Haga de su boda memorable con la planificación evento perfecto. Empieza aquí.",
+	"newyearPara":"Acuda a nosotros para planificar su evento de Año Nuevo y Navidad. Bienvenido Año Nuevo con estilo!",
+	"ins":"Arrastre las actividades planificadas de sugerencias a la Lista de tareas",
+	"eventName":"Nombre del Evento",
+	"suggestions":"Sugerencias",
+	"tasklist":"Mi Lista de Tareas",
+	"continue":"Continuar",
+	"taskName":"Nombre de Tarea",
+	"cost":"Costo Estimado ($)",
+	"chart":"Seleccione un estilo gráfico",
+	"pie":"Gráfico de sectores",
+	"donut":"Donut Tabla",
+	"update":"Actualización del Gráfico",
+	"save":"Guárdelo",
+	"myEvent":"Mis Eventos Planificados"
+}
