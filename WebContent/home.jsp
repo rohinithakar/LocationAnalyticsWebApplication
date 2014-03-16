@@ -81,15 +81,23 @@
 	text-align: center;
 	font-size: 2em;
 	font-weight: bold;
-	padding:0px;
+	padding: 0px;
 }
 
 .actionlist li {
 	list-style: none;
 	list-style-type: none;
-	background-color: aqua;
+	margin: 1em 5em;
+}
+
+.actionlist li a {
+	background-color: #49bfc3;
 	padding: 1em;
-	margin:1em 5em;
+	border-radius: 10px;
+	color: white;
+	display: inline-block;
+	width: 100%;
+	min-height: 100%;
 }
 </style>
 
@@ -184,10 +192,10 @@
 
 			<div>
 			<ul class="actionlist">
-				<li>Add Event</li>
-				<li>My Deals</li>
-				<li>Add Deal</li>
-				<li>Generate Report</li>
+				<li><a href="addEvent.jsp">Add Event</a></li>
+				<li><a href="addPromotion.jsp">Add Promotion</a></li>
+				<li><a href="addPromotion.jsp">View My Deals</a></li>
+				<li><a href="addPromotion.jsp">Generate Report</a></li>
 			</ul>
 			</div>
 

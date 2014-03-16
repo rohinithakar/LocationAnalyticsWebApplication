@@ -96,6 +96,7 @@ $(function() {
 							document.getElementById("fblogin").style.display = "none";
 							document.getElementById("logout-user").style.display = "inline-block";
 							$( "#dialog-form1").dialog( "close" );
+							$(location).attr('href',"home.jsp");
 						}
 						else{
 							document.getElementById("errorMessage").innerHTML = "Invalid Input. Try again.";
@@ -173,6 +174,7 @@ $(function() {
 							document.getElementById("fblogin").style.display = "none";
 							document.getElementById("logout-user").style.display = "inline-block";
 							$( "#dialog-form1").dialog( "close" );
+							$(location).attr('href',"home.jsp");
 						}
 						else{
 							document.getElementById("errorMessage").innerHTML = "Invalid Input. Try again.";
