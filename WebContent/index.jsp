@@ -109,14 +109,10 @@
 			
 		<div class="right">
 				<div style="display:inline-block; vertical-align:top; margin-left:200pxx;">
-				<a href="index.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
+				<a href="home.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text"><%=helper.getText("home")%></span>
 				</a>
 				<% Integer userId = (Integer)session.getAttribute("userId"); %>
-				
-				<a id="viewSummary" href="SummaryPage.jsp?categoryName=common" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
-				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("myevents")%></span></a>
-				
 				<a id="login-user" style="font-size: 14px; color: #561243; <%if( userId != null){ %>display:none; <% } %>" data-inline="true";><%=helper.getText("login")%></a>
 				<a id="logout-user" href="logOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("logout")%></span></a>
@@ -310,7 +306,7 @@
 			<div data-type="element" style="position: absolute; left: 43px; z-index: 18; height: 150px; width: 300px; background: transparent; border: none;">
 				<div class="img_theme" style="width: 300px; height: 150px; overflow: hidden; position: relative;">
 					<img src="//nebula.wsimg.com/bcabd1c22038744143a961ea3559655f?AccessKeyId=D7C618D47C3AAD45453A&amp;disposition=0"alt="" style="width: 300px; height: 150px;">
-					<div id = "birthday" style="width:280px;" class="text" onclick="redirect(this.id)">
+					<div id = "birthday" style="width:280px;" class="text">
 						<h3>
 							<!--  <a href="birthday.html">Birthday</a>-->
 							<%=helper.getText("manage")%>
@@ -323,7 +319,7 @@
 			<div data-type="element" style="position: absolute; left: 362px; z-index: 19; height: 150px; width: 300px; background: transparent; border: none;">
 				<div class="img_theme"style="width: 300px; height: 150px; overflow: hidden; position: relative;">
 					<img src="img/thumbBckgrnd.jpeg" alt="" style="width: 300px; height: 150px;" />
-					<div id = "wedding" class="text" style="width:280px;" onclick="redirect(this.id)">
+					<div id = "wedding" class="text" style="width:280px;">
 						<h3>
 							<!--  <a href="wedding.html">Wedding</a>-->
 							<%=helper.getText("promote")%>
@@ -339,7 +335,7 @@
 			<div data-type="element" style="position: absolute; left: 692px; z-index: 20; height: 150px; width: 300px; background: transparent; border: none;">
 				<div class="img_theme" style="width: 300px; height: 150px; overflow: hidden; position: relative;">
 					<img src="//nebula.wsimg.com/a95593e4159f4438bdaa6882b72ee99a?AccessKeyId=D7C618D47C3AAD45453A&amp;disposition=0" alt="" style="width: 300px; height: 150px;">
-					<div id="newyear" class="text" style="width:280px;" onclick="redirect(this.id)">
+					<div id="newyear" class="text" style="width:280px;">
 						<h3>
 							<!--  <a href="newYear.html" style="left:100px;">New Year</a><br>-->
 							<%=helper.getText("analyze")%>
@@ -351,13 +347,6 @@
 			
 			<!-- End of Container -->
 		</div>
- <div id="audioPlayer" align="center">
-			<audio controls autoplay loop>
-				<source src="audio/common.mp3" type="audio/mpeg">
-
-			</audio> 
-		</div>
-		<br>
 		
 		<div class="d_footer">
 			<span class="copyright">© 2013 LocationAnalyticsManager Inc. All Rights Reserved. | </span>

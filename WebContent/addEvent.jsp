@@ -117,13 +117,10 @@ form label {
 			
 		<div class="right">
 				<div style="display:inline-block; vertical-align:top; margin-left:200pxx;">
-				<a href="index.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
+				<a href="home.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text">Home</span>
 				</a>
 				<% Integer userId = (Integer)session.getAttribute("userId"); %>
-				
-				<a id="viewSummary" href="SummaryPage.jsp?categoryName=common" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
-				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text">MyEvents</span></a>
 				
 				<a id="login-user" style="font-size: 14px; color: #561243; <%if( userId != null){ %>display:none; <% } %>" data-inline="true";>Login</a>
 				<a id="logout-user" href="logOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
@@ -133,27 +130,6 @@ form label {
   				<a href="javascript:login();"> <img src="img/fb-login.png"></a>
    				</span>
    				
-   				<span id="language"
-							style="data-inline:true; <%if (userId != null) {%>display:block; <%}%>">
-				
-						
-						
-				 <FORM NAME="form1" METHOD="POST">
-							
-							<input type="button" id="snlangSpace" name="submit1" 
-									onClick="changeToSpanish()"
-									style="background: url(img/snLang.png); visibility: visible; border: none; width: 30px; height: 25px;" />
-
-								<input type="button" id="enlangSpace" name="submit2" 
-									onClick="changeToEnglish()"
-									style="background: url(img/enLang.png); visibility: visible; border: none; width: 30px; height: 25px;" />							
-						
-						 	<input type="hidden" id="hiddenLanguage"  name="hiddenLanguage">
-						
-						</FORM> 
-						
-						        </FORM> 
-						</span> 
  				</div>
 				
    				
@@ -175,7 +151,7 @@ form label {
 		
 		<form id="addpromotionform">
 		<div id="promotiondetails">
-		<h1>Add Promotion: </h1><br>
+		<h1>Add Promotion: Event</h1><br>
 				<label for="promoname">Name:</label>
 				<input type="text" id="promoName"><br>
 				<label for="startDate">Start Date:</label>
@@ -194,7 +170,7 @@ form label {
 			</div><br>
 		
 		<div class="promotiondealdetails" id="promotiondealdetails">
-		<h2>Promotion Advertisement Details: </h2>
+		<h2>Event Details: </h2>
 		<div class="addable">
 				<div>
 				<label for="dealName0">Name:</label><input type="text" name="name" id="dealName0"><br><br>

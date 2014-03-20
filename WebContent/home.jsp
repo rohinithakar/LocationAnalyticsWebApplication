@@ -134,14 +134,10 @@
 			
 		<div class="right">
 				<div style="display:inline-block; vertical-align:top; margin-left:200pxx;">
-				<a href="index.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
+				<a href="home.jsp" id="home" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="font-size: 14px; color: #561243;" data-inline="true">
 				<span class="ui-button-text"><%=helper.getText("home")%></span>
 				</a>
-				<% Integer userId = (Integer)session.getAttribute("userId"); %>
-				
-				<a id="viewSummary" href="SummaryPage.jsp?categoryName=common" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
-				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("myevents")%></span></a>
-				
+				<% Integer userId = (Integer)session.getAttribute("userId"); %>				
 				<a id="login-user" style="font-size: 14px; color: #561243; <%if( userId != null){ %>display:none; <% } %>" data-inline="true";><%=helper.getText("login")%></a>
 				<a id="logout-user" href="logOut.jsp" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" 
 				style="font-size:14px;color: #561243;<%if(userId == null){ %>display:none; <% } %>" data-inline="true"; ><span class="ui-button-text"><%=helper.getText("logout")%></span></a>
@@ -150,26 +146,8 @@
   				<a href="javascript:login();"> <img src="img/fb-login.png"></a>
    				</span>
    				
-   				<span id="language"
-							style="data-inline:true; <%if (userId != null) {%>display:block; <%}%>">
-				
-						
-						
-				 <FORM NAME="form1" METHOD="POST">
-							
-							<input type="button" id="snlangSpace" name="submit1" 
-									onClick="changeToSpanish()"
-									style="background: url(img/snLang.png); visibility: visible; border: none; width: 30px; height: 25px;" />
-
-								<input type="button" id="enlangSpace" name="submit2" 
-									onClick="changeToEnglish()"
-									style="background: url(img/enLang.png); visibility: visible; border: none; width: 30px; height: 25px;" />							
-						
-						 	<input type="hidden" id="hiddenLanguage"  name="hiddenLanguage">
-						
-						</FORM> 
-						
-						        </FORM> 
+   				<span id="language" style="data-inline:true; <%if (userId != null) {%>display:block; <%}%>">
+						       
 						</span> 
  				</div>
 				
@@ -194,8 +172,8 @@
 			<ul class="actionlist">
 				<li><a href="addEvent.jsp">Add Event</a></li>
 				<li><a href="addPromotion.jsp">Add Promotion</a></li>
-				<li><a href="addPromotion.jsp">View My Deals</a></li>
-				<li><a href="addPromotion.jsp">Generate Report</a></li>
+				<li><a href="myEvents.jsp">View My Deals</a></li>
+				<li><a href="viewReports.jsp">Generate Report</a></li>
 			</ul>
 			</div>
 
