@@ -150,11 +150,11 @@
 					<% for(int i=0;i<15;i++){ %>
 
 					<tr>
-						<td>Product <%=i%></td>
-						<td>Text</td>
-						<td>Text</td>
-						<td>Text</td>
-						<td>Text</td>
+						<td>Tully's Coffee Deal <%=i%></td>
+						<td>get <%=i %> free when u buy 10</td>
+						<td>Deal</td>
+						<td>Active</td>
+						<td><a href="url">Delete</a></td>
 					</tr>
 					<% }  %>
 				</table>
