@@ -67,8 +67,8 @@ public class ServletHelper {
 			//convert array of tag [School,Education] into Comma Separated String like {School,Education}
 				//System.out.println(ALDeals.get(i).getAltags());	
 			String tags = arrayToString(ALDeals.get(i).getAltags());
-				String query = "INSERT INTO \"PromotionAdDetails\"(adName,adDescription,adDetail,adTags,adCount,numberOfAttendees,adScheduleDetail,p_Id)"+
-						"VALUES ('"+ALDeals.get(i).getDealname() +"','"+ ALDeals.get(i).getDealDesc() +"','"+ALDeals.get(i).getDealDetail()+"','"+tags+"',"+ALDeals.get(i).getDealNumbers()+","+ALDeals.get(i).getDealEventAttendees()+",'" + ALDeals.get(i).getScheduleTime() + "'," + pid + ")";	
+				String query = "INSERT INTO \"PromotionAdDetails\"(adName,adDescription,adDetail,adTags,adCount,numberOfAttendees,adScheduleDetail,p_Id,subscribeddealcount)"+
+						"VALUES ('"+ALDeals.get(i).getDealname() +"','"+ ALDeals.get(i).getDealDesc() +"','"+ALDeals.get(i).getDealDetail()+"','"+tags+"',"+ALDeals.get(i).getDealNumbers()+","+ALDeals.get(i).getDealEventAttendees()+",'" + ALDeals.get(i).getScheduleTime() + "'," + pid + ",0)";	
 			
 				System.out.print(query);
 				int rowCount = stmt.executeUpdate(query);

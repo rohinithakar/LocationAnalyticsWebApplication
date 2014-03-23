@@ -13,7 +13,7 @@
 	<meta name="description" content="LocationAnalyticsManager - Manage Your Business" />
 	<meta name="keywords" content="Deals, Ads, Promotion, Discount, Coupon, Location Analytics, Location" />
 	<meta name="author" content="Codrops" />
-	
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
@@ -161,7 +161,7 @@ form label {
 				<input type="date" id="endsDate"><br>
 				<label for="desc">Description:</label>
 				<input type="text" id="desc"><br><br><br>
-			<div id="address"><br>
+			<div id="addressdiv"><br>
 				<label for="address">Address:</label>
 				<textarea id="address"></textarea><br>
 				<label for="city">City:</label>
@@ -172,12 +172,12 @@ form label {
 		
 		<div class="promotiondealdetails" id="promotiondealdetails">
 		<h2>Deal Details: </h2>
-		<div class="addable">
+		<div class="addable" index="0">
 				<div>
 				<label for="dealName0">Name:</label><input type="text" name="name" id="dealName0"><br><br>
 				<label for="dealDescription0">Description</label><textarea name="desc" rows="0" cols="20" id="dealDescription0"></textarea><br>
-				<label for="dealDetail0">Deal Detail</label><input type="text" name="dealDetail" id="dealDetail0"><br>
-				<label for="noofDeals0">Deal Count</label><input type="text" name="noofDeals" id="noofDeals0"><br><br><br>
+				<!--  <label for="dealDetail0">Deal Detail</label><input type="text" name="dealDetail" id="dealDetail0"><br>-->
+				<label for="noofDeals0">Deal Count</label><input type="text" name="noofDeals" id="noofDeals0"><br><br>			
 				<label for="Tags0">Tags</label>
 					<select multiple="multiple" id="Tags0">
 						<option value="Student">Student</option>
@@ -190,7 +190,7 @@ form label {
 		
 		</div><br>
 		<button type="button" id="addnew">Add New</button>
-		<button type="button" id="evaluate">Evaluate</button>
+		<button type="button" id="submit">Submit</button>
 		<!-- End of promotionaldetails container  --> 
 		</div>
 	</form>

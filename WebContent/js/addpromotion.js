@@ -1,7 +1,8 @@
 $(document).ready(function(){
+var mygc = new google.maps.Geocoder();
 var globalDivCount=0;
 document.getElementById("addnew").addEventListener("click",manipulate);
-document.getElementById("evaluate").addEventListener("click",evaluate);
+document.getElementById("submit").addEventListener("click",submit);
 
 
 
@@ -36,6 +37,7 @@ function manipulate(){
 	var tags=['Student','Event','Education','Shopping'];
 	var parent = document.getElementById("promotiondealdetails");
 	var element = document.createElement("div");
+	element.setAttribute("index",globalDivCount);
 	element.setAttribute("class","addable");
 	
 	//<span class="delete" id="cancel0"><img src="img/cancel_icon.gif"></span>
@@ -71,12 +73,12 @@ function manipulate(){
 	textDesc.setAttribute("id", "dealDescription"+globalDivCount);
 	
 	//Deal Detail
-	var labelDealDetail = document.createElement("label");
+	/*var labelDealDetail = document.createElement("label");
 	labelDealDetail.setAttribute("for", "dealDetail"+globalDivCount);
 	labelDealDetail.innerHTML = "Deal Detail:";
 	var textDealDetail = document.createElement("input");
 	textDealDetail.setAttribute("type", "text");
-	textDealDetail.setAttribute("id", "dealDetail"+globalDivCount);
+	textDealDetail.setAttribute("id", "dealDetail"+globalDivCount);*/
 	
 	//Number of Deals 
 	var labelNumberofDeals  = document.createElement("label");
@@ -110,11 +112,11 @@ function manipulate(){
 	element.appendChild(labelDesc);
 	element.appendChild(textDesc);
 	element.appendChild(document.createElement("br"));
-	element.appendChild(document.createElement("br"));
+	/*element.appendChild(document.createElement("br"));
 	element.appendChild(labelDealDetail);
 	element.appendChild(textDealDetail);
 	element.appendChild(document.createElement("br"));
-	element.appendChild(document.createElement("br"));
+	element.appendChild(document.createElement("br"));*/
 	element.appendChild(labelNumberofDeals);
 	element.appendChild(textNumberofDeals);
 	element.appendChild(document.createElement("br"));
@@ -126,39 +128,98 @@ function manipulate(){
 }
 
 
-function evaluate(){
-	var elements = document.getElementsByClassName("addable");
+function submit(){
+	
+	var promotion={};
+	
+	
+	//get all properties/values of promotion
+	// 1 for DailyTakeAWay Deals.
+	promotion.type=1;
+	promotion.name=document.getElementById("promoName").value;
+	promotion.startdate=document.getElementById("startDate").value;
+	promotion.enddate=document.getElementById("endsDate").value;
+	promotion.description=document.getElementById("desc").value;
+	promotion.address=$("#address").val();
+	promotion.city=document.getElementById("city").value;
+	promotion.pincode=document.getElementById("pincode").value;
+	
+	
+	var combineAddress = promotion.address + "," + promotion.city + " "+ promotion.pincode;
+	
+	//getting list of deals and creating a array name : deal 
+	//var elements = document.getElementsByClassName("addable");
 	var deals=[];
 	var selectedtags=[];
-	alert(elements.length);
-	for(var i=0;i<elements.length;i++){
-		var deal={
+	//alert(elements.length);
+	var kids = $(".promotiondealdetails").children("div.addable");
+	//alert(kids);
+	
+	
+	
+	for(var i=0;i<kids.length;i++){
+		var Ad={
 				
 				toString:function(){
 					return this.name;
 				}
 		};
-			deal.name = document.getElementById("dealName"+i).value;
-			deal.description = document.getElementById("dealDescription"+i).value;
-			deal.dealDetail = document.getElementById("dealDetail"+i).value;
-			deal.noofDeals = document.getElementById("noofDeals"+i).value;
-			var tag = document.getElementById("Tags"+i);
+		var index=$(kids[i]).attr("index");//.id;
+			Ad.name = document.getElementById("dealName"+index).value;
+			Ad.description = document.getElementById("dealDescription"+index).value;
+			//deal.dealDetail = document.getElementById("dealDetail"+index).value;
+			Ad.noofDeals = document.getElementById("noofDeals"+index).value;
+			Ad.noofAttendees = 0;
+			Ad.scheduletime="00:00 - 24:00";
+			var tag = document.getElementById("Tags"+index);
 			
 			for(var j=0;j<tag.length;j++){
 				if(tag[j].selected){
 					console.log("fff" + tag[j].value);
 					selectedtags.push(tag[j].value);}
 			}
-			deal.tags = selectedtags;
+			Ad.tags = selectedtags;
+			selectedtags=[];
 			
-			deals.push(deal);
+			deals.push(Ad);
 	}
-	alert(deals[0].name);
+	
+	promotion.deal=deals;
+	
+	//converting address to lat/long
+	mygc.geocode({'address' : '\''+ combineAddress + '\''}, 
+			function(results, status){
+			    console.log( "latitude : " + results[0].geometry.location.lat() );
+			    console.log( "longitude : " + results[0].geometry.location.lng() );
+			    
+			    promotion.lat=results[0].geometry.location.lat();
+			    promotion.long=results[0].geometry.location.lng();
+			
+			    console.log(promotion);
+			    callAjax(JSON.stringify(promotion));
+	});
+	
+	//alert(deals[1].name);
 	/*for(var e in elements){
 		alert(document.getElementById("dealName1").value);
 	}*/
 }
 
+function callAjax(jsStr)
+{
+	 $.ajax( {
+         url:'LoginForm',
+         type:'POST',
+         dataType: 'json',
+         //data:'country=1',
+         data:jsStr,
+         contentType: 'application/json; charset=utf-8',
+      }).done(function(response){
+    	  if( response.success === true ) {
+    		  $(location).attr('href','myEvents.jsp');
+    	  }
+      });
+}
 
 
 });

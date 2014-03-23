@@ -29,7 +29,6 @@
     <servlet-name>GetRegistrationDetails</servlet-name>
     <url-pattern>/GetRegistrationDetails</url-pattern>
   </servlet-mapping>
-  
    <servlet>
     <servlet-name>GetHello1</servlet-name>
     <servlet-class>servlets.PromotionHandler</servlet-class>

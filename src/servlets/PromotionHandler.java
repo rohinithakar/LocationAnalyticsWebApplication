@@ -3,6 +3,8 @@ package servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -22,14 +24,14 @@ import org.codehaus.jettison.json.JSONObject;
 //@WebServlet("/PromotionHandler")
 public class PromotionHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PromotionHandler() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public PromotionHandler() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,14 +45,14 @@ public class PromotionHandler extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		System.out.println("in promotionHandler");
 		response.setContentType("application/json");
 		StringBuffer jb = new StringBuffer();
 		String line = null;
 		JSONObject jsonObject = null;
 		ServletHelper sh = new ServletHelper();
-		
+
 		try {
 			BufferedReader reader = request.getReader();
 			while ((line = reader.readLine()) != null)
@@ -61,7 +63,7 @@ public class PromotionHandler extends HttpServlet {
 			System.out.println("During initial read error");
 			e.printStackTrace();
 		}
-		
+
 		System.out.println(jb);
 		try {
 			jsonObject = new JSONObject(jb.toString());
@@ -78,43 +80,49 @@ public class PromotionHandler extends HttpServlet {
 			//double promotionLocationLongitude=0.0;
 			double promotionLocationAltitude =0.0;
 			org.codehaus.jettison.json.JSONArray deals = jsonObject.getJSONArray("deal");
-			
+
 			ArrayList<DealDetailsPOJO> ALDeals = new ArrayList<DealDetailsPOJO>();
 			for(int i=0;i<deals.length();i++){
-			
-			DealDetailsPOJO dp= new DealDetailsPOJO();
-			JSONObject d = deals.getJSONObject(i);
-			System.out.println(d.getString("name"));
-			dp.setDealname(d.getString("name"));
-			dp.setDealDesc(d.getString("description"));
-			dp.setDealNumbers(d.getString("noofDeals"));
-			dp.setDealEventAttendees(d.getString("noofAttendees"));
-			dp.setScheduleTime(d.getString("scheduletime"));
-			
-			//iterate through tags
-			org.codehaus.jettison.json.JSONArray tags = d.getJSONArray("tags");
-			System.out.println(tags);
-			
-			
-			
-			ArrayList<String> tagsArray = new ArrayList<String>();
+
+				DealDetailsPOJO dp= new DealDetailsPOJO();
+				JSONObject d = deals.getJSONObject(i);
+				System.out.println(d.getString("name"));
+				dp.setDealname(d.getString("name"));
+				dp.setDealDesc(d.getString("description"));
+				dp.setDealNumbers(d.getString("noofDeals"));
+				dp.setDealEventAttendees(d.getString("noofAttendees"));
+				dp.setScheduleTime(d.getString("scheduletime"));
+
+				//iterate through tags
+				org.codehaus.jettison.json.JSONArray tags = d.getJSONArray("tags");
+				System.out.println(tags);
+
+
+
+				ArrayList<String> tagsArray = new ArrayList<String>();
 				for(int j=0;j<tags.length();j++){
 					String ij = (String) tags.get(j);
 					System.out.println("a " + ij);
 					tagsArray.add(ij);
 				}
-			
-			dp.setAltags(tagsArray);
-			
-			ALDeals.add(dp);
+
+				dp.setAltags(tagsArray);
+
+				ALDeals.add(dp);
 				System.out.print(dp.getDealname());
-					
+
 			}
-			
-			System.out.print("d   " + ALDeals.get(0).getDealNumbers());
-			
+
+			System.out.println("d   " + ALDeals.get(0).getDealNumbers());
+
 			//make call to database.
-		sh.CreatePromotion(promotionName, promotionDescription, promotionType, promotionStartDate, promotionEndDate, promotionLocationAddress, promotionLocationLattitude, promotionLocationLongitude, promotionLocationAltitude,ALDeals);
+			sh.CreatePromotion(promotionName, promotionDescription, promotionType, promotionStartDate, promotionEndDate, promotionLocationAddress, promotionLocationLattitude, promotionLocationLongitude, promotionLocationAltitude,ALDeals);
+			PrintWriter writer = response.getWriter();
+			JSONObject obj = new JSONObject();
+			obj.put("success", true);
+			obj.put("error", false);
+			writer.print(obj.toString());
+			writer.close();
 		}
 		catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
