@@ -20,6 +20,7 @@
     <url-pattern>/GetLoginDetails</url-pattern>
   </servlet-mapping>
   <servlet>
+      
     <description></description>
     <display-name>GetRegistrationDetails</display-name>
     <servlet-name>GetRegistrationDetails</servlet-name>
@@ -36,5 +37,14 @@
   <servlet-mapping>
     <servlet-name>GetHello1</servlet-name>
     <url-pattern>/LoginForm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DeletePromotion</servlet-name>
+    <servlet-class>servlets.DeletePromotion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeletePromotion</servlet-name>
+    <url-pattern>/DeletePromotion</url-pattern>
   </servlet-mapping>
 </web-app>

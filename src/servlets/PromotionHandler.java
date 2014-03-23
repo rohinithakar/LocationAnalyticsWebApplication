@@ -67,6 +67,7 @@ public class PromotionHandler extends HttpServlet {
 		System.out.println(jb);
 		try {
 			jsonObject = new JSONObject(jb.toString());
+			Integer userId = jsonObject.getInt("userId");
 			String promotionName = jsonObject.getString("name");
 			String promotionDescription = jsonObject.getString("description");
 			String promotionType = jsonObject.getString("type");
@@ -116,7 +117,7 @@ public class PromotionHandler extends HttpServlet {
 			System.out.println("d   " + ALDeals.get(0).getDealNumbers());
 
 			//make call to database.
-			sh.CreatePromotion(promotionName, promotionDescription, promotionType, promotionStartDate, promotionEndDate, promotionLocationAddress, promotionLocationLattitude, promotionLocationLongitude, promotionLocationAltitude,ALDeals);
+			sh.CreatePromotion(userId, promotionName, promotionDescription, promotionType, promotionStartDate, promotionEndDate, promotionLocationAddress, promotionLocationLattitude, promotionLocationLongitude, promotionLocationAltitude,ALDeals);
 			PrintWriter writer = response.getWriter();
 			JSONObject obj = new JSONObject();
 			obj.put("success", true);

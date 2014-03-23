@@ -1,0 +1,102 @@
+package servlets;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+
+/**
+ * Servlet implementation class GetLoginDetails
+ */
+public class DeletePromotion extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		
+		response.setContentType("application/json");
+		StringBuffer jb = new StringBuffer();
+		String line = null;
+		try {
+			BufferedReader reader = request.getReader();
+			while ((line = reader.readLine()) != null)
+				jb.append(line);
+		} catch (Exception e)
+		{ 
+			//report an error 
+
+		}
+
+		try {
+			JSONObject jsonObject = new JSONObject(jb.toString());
+			System.out.println("jsonObject:"+jsonObject.toString());
+
+			String promotionid = jsonObject.getString("promotionid");
+			System.out.println("promotionid:"+promotionid);
+			
+
+			Connection con = null;
+			ResultSet rs;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			
+			DatabaseConnection connection = DatabaseConnection.getInstance();
+			con = connection.setConnection();
+			stmt = con.createStatement();
+			stmt.setEscapeProcessing(true);
+			if(!con.isClosed()){
+				System.out.println("Successfully Connected!");
+			}
+
+			String query = "UPDATE \"PromotionalDeals\" SET  dealstatus = false WHERE promotionid ="+promotionid;
+			System.out.println("Query: "+query);
+			int rowCount = stmt.executeUpdate(query);
+			System.out.println("count: "+rowCount);
+			JSONObject resp = new JSONObject();
+
+			if(rowCount>0){
+				if(rowCount>0){
+					System.out.println("Promotion Delete Successful");
+					resp.put("errorCode",200);
+					resp.put("responseText","Success");
+				}
+				else{
+					System.out.println("Promotion Delete failed");
+					resp.put("errorCode",300);
+					resp.put("responseText","Failure");
+				}
+
+			}
+			response.getWriter().write(resp.toString());
+
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+}

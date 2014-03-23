@@ -136,6 +136,7 @@ function submit(){
 	//get all properties/values of promotion
 	// 1 for DailyTakeAWay Deals.
 	promotion.type=1;
+	promotion.userId=$("#userId").val();
 	promotion.name=document.getElementById("promoName").value;
 	promotion.startdate=document.getElementById("startDate").value;
 	promotion.enddate=document.getElementById("endsDate").value;

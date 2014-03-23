@@ -153,6 +153,7 @@ form label {
 		<form id="addpromotionform">
 		<div id="promotiondetails">
 		<h1>Add Promotion: Deal </h1><br>
+				<input type="hidden" id="userId" name="userId" value="<%=userId%>"/>
 				<label for="promoname">Name:</label>
 				<input type="text" id="promoName"><br>
 				<label for="startDate">Start Date:</label>

@@ -11,6 +11,15 @@ public class DealDetailsPOJO {
 	String dealNumbers;
 	String dealEventAttendees;
 	String scheduleTime;
+	String type;
+	Boolean status;
+	
+	public Boolean getStatus() {
+		return status;
+	}
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 	public String getScheduleTime() {
 		return scheduleTime;
 	}
@@ -78,6 +87,11 @@ public class DealDetailsPOJO {
 	public void setTags(String[] tags) {
 		this.tags = tags;
 	}
-	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 }

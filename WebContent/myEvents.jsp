@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <%@ page pageEncoding="UTF-8"%>
 <%@page import="utils.LocalizationHelper"%>
+<%@page import="servlets.*" %>
+<%@page import="java.util.*" %>
 <html lang="en" class="no-js demo-1">
 <head>
 <meta charset="UTF-8" />
@@ -27,7 +29,7 @@
 <link rel="stylesheet" type="text/css" href="css/demo1.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <script src="js/modernizr.custom.js"></script>
-
+<script src="js/DeleteDeal.js"></script>
 
 <style type="text/css">
 .TFtable {
@@ -137,7 +139,6 @@
 		<br>
 		<div class="container">
 			<div class="main clearfix">
-
 				<table class="TFtable" align="center">
 					<tr>
 					<th>Promotion Name</th>
@@ -146,15 +147,27 @@
 					<th>Status</th>
 					<th>Delete</th>
 					</tr>
-					
-					<% for(int i=0;i<15;i++){ %>
+					<%
+					ServletHelper helper = new ServletHelper();
+					List<DealDetailsPOJO> deals = helper.getPromotions(userId);
+					%>
+					<% for(DealDetailsPOJO deal : deals){ %>
 
 					<tr>
-						<td>Tully's Coffee Deal <%=i%></td>
-						<td>get <%=i %> free when u buy 10</td>
-						<td>Deal</td>
+						<td><%=deal.getDealname() %></td>
+						<td><%=deal.getDealDesc() %></td>
+						<% if((deal.getType()).equals("1")){%>
+						<td>Promotional Deal</td>
+						<% } else { %>
+						<td>Promotional Event</td>
+						<% } %>
+						<% if(deal.getStatus()) {%>
 						<td>Active</td>
-						<td><a href="url">Delete</a></td>
+						<% }else {%>
+						<td>Expired</td>
+						<% }  %>
+						
+						<td><button class="deleteDeal" promotionid="<%=deal.getDealid()%>" type="button" >Delete</button></td>
 					</tr>
 					<% }  %>
 				</table>
