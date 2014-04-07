@@ -13,7 +13,14 @@ public class DealDetailsPOJO {
 	String scheduleTime;
 	String type;
 	Boolean status;
+	int subscribedDealCount;
 	
+	public int getSubscribedDealCount() {
+		return subscribedDealCount;
+	}
+	public void setSubscribedDealCount(int subscribedDealCount) {
+		this.subscribedDealCount = subscribedDealCount;
+	}
 	public Boolean getStatus() {
 		return status;
 	}

@@ -27,6 +27,7 @@
 <link rel="stylesheet" type="text/css" href="css/demo1.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <script src="js/modernizr.custom.js"></script>
+<script src="js/generateCharts.js"></script>
 
 
 <style type="text/css">
@@ -125,6 +126,7 @@
 			<div class="main clearfix">
 
 		<p> Reports will be shown here</p>
+		<button type="button" onclick="generateCharts()">Generate Report</button>
 
 			</div>
 		</div>

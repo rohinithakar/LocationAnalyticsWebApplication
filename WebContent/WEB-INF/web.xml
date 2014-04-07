@@ -47,4 +47,13 @@
     <servlet-name>DeletePromotion</servlet-name>
     <url-pattern>/DeletePromotion</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GenerateChart</servlet-name>
+    <servlet-class>servlets.GenerateChart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GenerateChart</servlet-name>
+    <url-pattern>/GenerateChart</url-pattern>
+  </servlet-mapping>
 </web-app>
