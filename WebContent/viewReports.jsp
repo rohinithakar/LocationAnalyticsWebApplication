@@ -44,6 +44,7 @@
 .TFtable tr {
 	background: #b8d1f3;
 }
+
 .TFtable th {
 	font-weight: bold;
 	padding: 7px;
@@ -57,10 +58,87 @@
 .TFtable tr:nth-child(even) {
 	background: #dae5f4;
 }
+
+#chartDetails{
+width:900px;
+height:450px;
+}
+
 </style>
 
 
 </head>
+
+<script>
+
+function generateCharts(){
+				$.ajax({
+					url: "GenerateChart",
+					type: "POST",
+					context: document.body,
+					success: function(data){
+						if(data.errorCode == 200){
+							console.log("success");
+							console.log(JSON.stringify(data)); 
+							
+							var promotionDetails  = new Array();
+							promotionDetails[0] = ["Promotion Name","Subscription Count"];
+							console.log(promotionDetails[0]);
+
+							for(var i=0;i<data.nameArray.length;i++)
+							{
+								promotionDetails[i+1] = [data.nameArray[i],data.countArray[i]];
+							   console.log(promotionDetails[i+1]);
+							}
+							drawChart(promotionDetails);
+							
+						}
+						else{
+							console.log("Failure");
+						}
+					}
+				});
+	}
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+     // google.setOnLoadCallback(drawChart));
+      function drawChart(promotionDetails) {
+    	  console.log("Here it is....");
+    	  console.log(promotionDetails);
+        var data = google.visualization.arrayToDataTable(
+//         [
+//           ['PromotionName', 'Subscription Count'],
+//           ["abc",  1000],
+//           ["sdsds",  1170],
+//           ["dfdfd",  660],
+//           ["dhhgfgkj",  1030]
+//         ]
+promotionDetails
+        );
+
+        var options = {
+          title: 'Promotion Subscription Analysis',
+          hAxis: {title: 'Promotions', titleTextStyle: {color: 'blue'}},
+          vAxis: {title: 'SubscriptionCount',titleTextStyle: {color: 'blue'}},
+//           axesDefaults: 
+//           { 
+//               useSeriesColor: true, 
+//               min: 0, 
+//               max: 1000, 
+//               tickInterval: 1, 
+//               tickOptions: { 
+//                       formatString: '%d' 
+//                   } 
+//           },
+
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chartDetails'));
+        chart.draw(data, options);
+      }
+    </script>
 <body>
 
 	<div id="wsb-canvas-template-page" class="wsb-canvas-page page"
@@ -95,11 +173,11 @@
 							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
 							style="font-size:14px;color: #561243;<%if (userId == null) {%>display:none; <%}%>"
 							data-inline="true"; ><span class="ui-button-text">LogOut</span></a>
-							<a href="javascript:login();"> <img src="img/fb-login.png"></a>
+						<a href="javascript:login();"> <img src="img/fb-login.png"></a>
 						</span>
 
 
-						
+
 						</FORM>
 						</span>
 					</div>
@@ -124,11 +202,13 @@
 		<br>
 		<div class="container">
 			<div class="main clearfix">
-
-		<p> Reports will be shown here</p>
-		<button type="button" onclick="generateCharts()">Generate Report</button>
-
+				<p>Click on "Generate Report" button to view the subscription analysis of promotions"</p>
+				<button type="button" onclick="generateCharts()">Generate
+					Report</button>
 			</div>
+			
+
+			<div id="chartDetails"></div>
 		</div>
 
 

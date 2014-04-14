@@ -39,6 +39,16 @@
     <url-pattern>/LoginForm</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>AddEvent</servlet-name>
+    <servlet-class>servlets.AddEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddEvent</servlet-name>
+    <url-pattern>/AddEvent</url-pattern>
+  </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>DeletePromotion</servlet-name>
     <servlet-class>servlets.DeletePromotion</servlet-class>

@@ -36,7 +36,7 @@
 	<script src="//connect.facebook.net/en_US/all.js"></script>
 	<script src="js/fb.js"></script>
 	<script src="js/forgotPassword.js"></script>
-	<script src="js/addpromotion.js"></script>
+	<script src="js/addEvent.js"></script>
 	
 	<style>
 .butt {
