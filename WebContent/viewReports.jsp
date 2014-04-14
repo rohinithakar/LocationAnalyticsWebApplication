@@ -178,7 +178,7 @@ promotionDetails
 							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
 							style="font-size:14px;color: #561243;<%if (userId == null) {%>display:none; <%}%>"
 							data-inline="true"; ><span class="ui-button-text">LogOut</span></a>
-						<a href="javascript:login();"> <img src="img/fb-login.png"></a>
+						<!--  <a href="javascript:login();"> <img src="img/fb-login.png"></a> -->
 						</span>
 
 
