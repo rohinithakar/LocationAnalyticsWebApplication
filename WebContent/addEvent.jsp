@@ -101,6 +101,13 @@ form label {
 </style>
 	
 </head>
+
+<%
+if(session.getAttribute("userId") == null){
+	System.out.println("Invalid session");
+	response.sendRedirect("index.jsp"); 
+}
+%>
 <body>
 
 	<div id="wsb-canvas-template-page" class="wsb-canvas-page page"style="margin: auto; width: 1019px; background-color: #ffffff; position: relative; margin-top: 0px">

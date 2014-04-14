@@ -68,7 +68,12 @@ height:450px;
 
 
 </head>
-
+<%
+if(session.getAttribute("userId") == null){
+	System.out.println("Invalid session");
+	response.sendRedirect("index.jsp"); 
+}
+%>
 <script>
 
 function generateCharts(){

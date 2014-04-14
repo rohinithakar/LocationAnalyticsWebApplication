@@ -75,6 +75,13 @@
 
 
 </head>
+
+<%
+if(session.getAttribute("userId") == null){
+	System.out.println("Invalid session");
+	response.sendRedirect("index.jsp"); 
+}
+%>
 <body>
 
 	<div id="wsb-canvas-template-page" class="wsb-canvas-page page"
