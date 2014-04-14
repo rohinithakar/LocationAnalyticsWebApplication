@@ -66,4 +66,35 @@
     <servlet-name>GenerateChart</servlet-name>
     <url-pattern>/GenerateChart</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>ForgotPasswordQuestion</display-name>
+    <servlet-name>ForgotPasswordQuestion</servlet-name>
+    <servlet-class>servlets.ForgotPasswordQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPasswordQuestion</servlet-name>
+    <url-pattern>/ForgotPasswordQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ForgotPasswordQuestionValidation</display-name>
+    <servlet-name>ForgotPasswordQuestionValidation</servlet-name>
+    <servlet-class>servlets.ForgotPasswordQuestionValidation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPasswordQuestionValidation</servlet-name>
+    <url-pattern>/ForgotPasswordQuestionValidation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SetNewPassword</display-name>
+    <servlet-name>SetNewPassword</servlet-name>
+    <servlet-class>servlets.SetNewPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetNewPassword</servlet-name>
+    <url-pattern>/SetNewPassword</url-pattern>
+  </servlet-mapping>
 </web-app>
