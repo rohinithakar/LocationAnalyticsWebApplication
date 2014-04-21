@@ -192,6 +192,7 @@ $(function() {
 		close: function() {
 			allFields.val( "" ).removeClass( "ui-state-error" );
 			parent.reloadContent(); // added by Rohini
+		
 		}
 	});
 	

@@ -43,7 +43,8 @@ $(function() {
       modal: true,
       buttons: {
     	 
-        "Register": function() {
+        "Register": 
+        	function() {
         	
         /*	
           var bValid = true;

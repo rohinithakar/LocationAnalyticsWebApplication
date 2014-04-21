@@ -179,7 +179,7 @@ if(session.getAttribute("userId") == null){
 		<div class="container">
 			<!-- /container -->
 
-			<div>
+			<div id="category">
 				<ul class="actionlist">
 					<li><a href="addEvent.jsp">Add Event</a></li>
 					<li><a href="addPromotion.jsp">Add Promotion</a></li>
