@@ -146,7 +146,7 @@ if(session.getAttribute("userId") == null){
 		<br>
 		<div class="container">
 			<div class="main clearfix">
-				<table class="TFtable" align="center">
+				<table class="TFtable" align="center" id="viewDealsTable">
 					<tr>
 					<th>Promotion Name</th>
 					<th>Description</th>

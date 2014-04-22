@@ -109,7 +109,7 @@ public class SeleniumTestCase extends TestCase {
 		fillTextElement("password_login", "123456");
 		driver.findElement(By.xpath("/html/body/div[5]/div[3]/div/button[1]/span")).click();
 		wait2Sec();
-		driver.findElement(By.id("Category"));
+		driver.findElement(By.id("category"));
 	}
 
 	public String generateString(){

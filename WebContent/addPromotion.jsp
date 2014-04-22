@@ -36,7 +36,7 @@
 	<script src="//connect.facebook.net/en_US/all.js"></script>
 	<script src="js/fb.js"></script>
 	<script src="js/forgotPassword.js"></script>
-	<script src="js/addEvent.js"></script>
+	<script src="js/addpromotion.js"></script>
 	
 	<style>
 .butt {
@@ -198,7 +198,7 @@ if(session.getAttribute("userId") == null){
 		
 		</div><br>
 		<button type="button" id="addnew">Add New</button>
-		<button type="button" id="submit">Submit</button>
+		<button type="button" id="submitPromotion">Submit</button>
 		<!-- End of promotionaldetails container  --> 
 		</div>
 	</form>

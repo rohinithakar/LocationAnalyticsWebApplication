@@ -2,7 +2,7 @@ $(document).ready(function(){
 var mygc = new google.maps.Geocoder();
 var globalDivCount=0;
 document.getElementById("addnew").addEventListener("click",manipulate);
-document.getElementById("submit").addEventListener("click",submit);
+document.getElementById("submitPromotion").addEventListener("click",submit);
 
 
 
@@ -129,6 +129,7 @@ function manipulate(){
 
 
 function submit(){
+	console.log("Inside Submit function..");
 	
 	var promotion={};
 	

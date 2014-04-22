@@ -2,7 +2,7 @@ $(document).ready(function(){
 var mygc = new google.maps.Geocoder();
 var globalDivCount=0;
 document.getElementById("addnew").addEventListener("click",manipulate);
-document.getElementById("submit").addEventListener("click",submit);
+document.getElementById("submitEvent").addEventListener("click",submit);
 
 
 

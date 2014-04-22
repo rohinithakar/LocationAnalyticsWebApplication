@@ -181,10 +181,10 @@ if(session.getAttribute("userId") == null){
 
 			<div id="category">
 				<ul class="actionlist">
-					<li><a href="addEvent.jsp">Add Event</a></li>
-					<li><a href="addPromotion.jsp">Add Promotion</a></li>
-					<li><a href="myEvents.jsp">View My Deals</a></li>
-					<li><a href="viewReports.jsp">Generate Report</a></li>
+					<li><a href="addEvent.jsp" id="event">Add Event</a></li>
+					<li><a href="addPromotion.jsp" id="promotion">Add Promotion</a></li>
+					<li><a href="myEvents.jsp" id="viewDeals">View My Deals</a></li>
+					<li><a href="viewReports.jsp" id="report">Generate Report</a></li>
 				</ul>
 			</div>
 

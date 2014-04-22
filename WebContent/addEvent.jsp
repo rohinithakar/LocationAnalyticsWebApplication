@@ -199,7 +199,7 @@ if(session.getAttribute("userId") == null){
 		
 		</div><br>
 		<button type="button" id="addnew">Add New</button>
-		<button type="button" id="submit">Submit</button>
+		<button type="button" id="submitEvent">Submit</button>
 		<!-- End of promotionaldetails container  --> 
 		</div>
 	</form>
