@@ -22,7 +22,7 @@ public class TestAddPromotion extends SeleniumTestCase  {
 		Select select = new Select(driver.findElement(By.xpath("//*[@id='Tags0']")));
 		select.deselectAll();
 		select.selectByVisibleText("Shopping");
-		driver.findElement(By.id("submit")).click();
+		driver.findElement(By.id("submitPromotion")).click();
 		wait2Sec();
 		assertTrue(driver.findElement(By.id("viewDealsTable")).isDisplayed());
 		

@@ -101,6 +101,12 @@ public class SeleniumTestCase extends TestCase {
 		webElement.sendKeys(value);
 	}
 
+	protected void fillTextElementByName(String name, String value) {
+		WebElement webElement = driver.findElement(By.name(name));
+		webElement.clear();
+		webElement.sendKeys(value);
+	}
+	
 	protected void login() throws InterruptedException{
 		driver.get(baseUrl);
 		waitForElementById("login-user");
