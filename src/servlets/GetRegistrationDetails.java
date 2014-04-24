@@ -22,12 +22,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
+import dao.RegistrationDAO;
+
 import java.util.logging.Logger;
 /**
  * Servlet implementation class GetRegistrationDetails
  */
 public class GetRegistrationDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	RegistrationDAO dao = new RegistrationDAO();
+
+	public GetRegistrationDetails(RegistrationDAO dao) {
+		this.dao = dao;
+	}
 
 	public static  String encryptPassword(String pwd){
 		String securePwd = null;
@@ -88,80 +95,25 @@ public class GetRegistrationDetails extends HttpServlet {
 			System.out.println("password:"+password);
 			String securePwd = encryptPassword(password);
 
-
-			Connection con = null;
-			ResultSet rs;
-			Statement stmt = null;
-
-
-			/*
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			
-			//This is old code for Heroku Connection
-			
-
-			URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
-
-			String username = dbUri.getUserInfo().split(":")[0];
-			String pwd = dbUri.getUserInfo().split(":")[1];
-			String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath(); 
-
-			String username = "rohini";
-			String pwd = "ruh12ruh";
-			String dbUrl = "jdbc:mysql://rohinidb.mayfounder.net:3306/eventhub"; */
-			
-			//	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventPlanning","b48da195f9eae4","457ffc28");
-			//con = DriverManager.getConnection(dbUrl, username, pwd);
-			
-			DatabaseConnection connection = DatabaseConnection.getInstance();
-			con = connection.setConnection();
-			stmt = con.createStatement();
-			stmt.setEscapeProcessing(true);
-			if(!con.isClosed()){
-				System.out.println("Successfully Connected!");
+			String outputStr = 	dao.getRegistration(firstName, lastName, email, securePwd, question, answer);
+			if(outputStr.equalsIgnoreCase("false")){
+				resp.put("errorCode",300);
+				resp.put("responseText","Failure");
 			}
-
-			//locationAnalyticsManager.
-			String query = "INSERT INTO \"BusinessUser\"(password,firstName,lastName,userName,securityQuestion,answer)"+
-					"VALUES ('"+securePwd+"','"+firstName+"','"+lastName+"','"+email+"','"+question+"','"+answer+"')";
-			System.out.println("Query: "+query);
-			int rowCount = stmt.executeUpdate(query);
-
-
-			if(rowCount>0){
-				String result = "true";
-				System.out.println("Insert Successful");
-
+			else if(outputStr.equalsIgnoreCase("duplicate")){
+				resp.put("errorCode",500);
+				resp.put("responseText","Duplicate");
+			}
+			else if (outputStr.equalsIgnoreCase("true")){
 				resp.put("errorCode",200);
-				resp.put("responseText","Success");
-				response.getWriter().write(resp.toString());
-				System.out.println("Response: "+resp);
-
+				resp.put("responseText","Success");		
 			}
 
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			if (e1.getMessage().contains("Duplicate entry")) {
-
-				System.out.println("message issss " + e1.getMessage());
-
-				try {
-					resp.put("errorCode", 500);
-
-					resp.put("responseText", "DuplicateId");
-
-					response.getWriter().write(resp.toString());
-
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-
-			e1.printStackTrace();
+			response.getWriter().write(resp.toString());
+			System.out.println("Response: "+resp);
+		}
+		catch(Exception e){
+			e.getMessage();
 		}
 	}
 

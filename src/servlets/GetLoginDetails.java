@@ -17,15 +17,26 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
+import dao.LoginDAO;
+
 /**
  * Servlet implementation class GetLoginDetails
  */
 public class GetLoginDetails extends HttpServlet {
+	
+	LoginDAO dao = new LoginDAO();
+	
+	GetLoginDetails(LoginDAO dao) {
+		this.dao = dao;
+	}
+	
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		JSONObject resp = new JSONObject();
+
 		
 		response.setContentType("application/json");
 		StringBuffer jb = new StringBuffer();
@@ -34,10 +45,8 @@ public class GetLoginDetails extends HttpServlet {
 			BufferedReader reader = request.getReader();
 			while ((line = reader.readLine()) != null)
 				jb.append(line);
-		} catch (Exception e)
-		{ 
-			//report an error 
-
+		} catch (Exception e) {
+			//
 		}
 
 		try {
@@ -50,52 +59,19 @@ public class GetLoginDetails extends HttpServlet {
 			System.out.println("password:"+password);
 			String securePwd = GetRegistrationDetails.encryptPassword(password);
 
-
-			Connection con = null;
-			ResultSet rs;
-			Statement stmt = null;
-
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			int userId = dao.getLogin(email, securePwd);
 			
-			/*String username = "rohini";
-			String pwd = "ruh12ruh";
-			String dbUrl = "jdbc:mysql://rohinidb.mayfounder.net:3306/eventhub";
-			con = DriverManager.getConnection(dbUrl, username, pwd); */
-
-			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventPlanning","root","ruh12ruh");
-			DatabaseConnection connection = DatabaseConnection.getInstance();
-			con = connection.setConnection();
-			stmt = con.createStatement();
-			stmt.setEscapeProcessing(true);
-			if(!con.isClosed()){
-				System.out.println("Successfully Connected!");
+			
+			if(userId == -1){
+				resp.put("errorCode",300);
+				resp.put("responseText","Failure");
 			}
-
-			String query = "select userName,firstName, password, businessuserid from \"BusinessUser\" where userName= '"+email+"' and password = '"
-					+securePwd+"';";
-			System.out.println("Query: "+query);
-			rs = stmt.executeQuery(query);
-			System.out.println("rs: "+rs);
-			JSONObject resp = new JSONObject();
-
-			if(rs != null){
-				if(rs.next()){
-					int userId =  rs.getInt("businessuserid");
-					session.setAttribute("userId", userId);
-				
-					System.out.println("UserId: "+ userId);
-					System.out.println("Login Sucessful!");
-					resp.put("errorCode",200);
-					resp.put("responseText","Success");
-				}
-				else{
-					session.setAttribute("error", "error");
-					System.out.println("Login failed");
-					resp.put("errorCode",300);
-					resp.put("responseText","Failure");
-				}
-
+			else{
+				session.setAttribute("userId", userId);
+				resp.put("errorCode",200);
+				resp.put("responseText","Success");	
 			}
+			
 			response.getWriter().write(resp.toString());
 
 		} catch (JSONException e1) {
@@ -115,7 +91,5 @@ public class GetLoginDetails extends HttpServlet {
 			e1.printStackTrace();
 		}
 	}
-
-
 
 }
