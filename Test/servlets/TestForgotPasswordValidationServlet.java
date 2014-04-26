@@ -21,10 +21,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import dao.ForgotPasswordQuestionDAO;
 import dao.ForgotPasswordQuestionValidationDAO;
-import dao.SetNewPasswordDAO;
 
-public class TestSetNewPasswordServlet {
+public class TestForgotPasswordValidationServlet {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -39,26 +39,26 @@ public class TestSetNewPasswordServlet {
 	}
 
 	@Test
-	public void testSetNewPasswordCorrectInput() throws Exception {
-		SetNewPasswordDAO dao = Mockito.mock(SetNewPasswordDAO.class);
+	public void testForgotPasswordValidationCorrectInput() throws Exception {
+		ForgotPasswordQuestionValidationDAO dao = Mockito.mock(ForgotPasswordQuestionValidationDAO.class);
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("value", "js1234");
+		jsonObject.put("value", "grey");
 		jsonObject.put("email", "js@yahoo.com");
 		BufferedReader reader = new BufferedReader(new StringReader(jsonObject.toString()));
 
 		when(request.getSession()).thenReturn(session);
 		when(request.getReader()).thenReturn(reader);
 		
-		when(dao.setNewPwd(anyString(), anyString())).thenReturn("success");
+		when(dao.forgotPwdQueValidation(anyString(),anyString())).thenReturn("true");
 		StringWriter strWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(strWriter);
 		when(response.getWriter()).thenReturn(writer);
 		
-		SetNewPassword servlet  = new SetNewPassword();
+		ForgotPasswordQuestionValidation servlet  = new ForgotPasswordQuestionValidation();
 		servlet.doPost(request, response);
 
 		JSONObject expectedResponse = new JSONObject();

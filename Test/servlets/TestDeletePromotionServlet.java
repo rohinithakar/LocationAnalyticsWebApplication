@@ -1,9 +1,11 @@
 package servlets;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -21,10 +23,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import dao.ForgotPasswordQuestionValidationDAO;
-import dao.SetNewPasswordDAO;
+import dao.DeletePromotionDAO;
+import dao.LoginDAO;
 
-public class TestSetNewPasswordServlet {
+public class TestDeletePromotionServlet {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -39,33 +41,31 @@ public class TestSetNewPasswordServlet {
 	}
 
 	@Test
-	public void testSetNewPasswordCorrectInput() throws Exception {
-		SetNewPasswordDAO dao = Mockito.mock(SetNewPasswordDAO.class);
+	public void testDeletePromotion() throws Exception {
+		DeletePromotionDAO dao = Mockito.mock(DeletePromotionDAO.class);
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("value", "js1234");
-		jsonObject.put("email", "js@yahoo.com");
+		jsonObject.put("promotionid", "24");
 		BufferedReader reader = new BufferedReader(new StringReader(jsonObject.toString()));
 
 		when(request.getSession()).thenReturn(session);
 		when(request.getReader()).thenReturn(reader);
 		
-		when(dao.setNewPwd(anyString(), anyString())).thenReturn("success");
+		when(dao.deletePromotion(anyString())).thenReturn("true");
 		StringWriter strWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(strWriter);
 		when(response.getWriter()).thenReturn(writer);
 		
-		SetNewPassword servlet  = new SetNewPassword();
+		DeletePromotion servlet  = new DeletePromotion();
 		servlet.doPost(request, response);
 
 		JSONObject expectedResponse = new JSONObject();
 		expectedResponse.put("errorCode", 200);
 		expectedResponse.put("responseText", "Success");
-		assertNotNull(expectedResponse.toString());
+		assertEquals(expectedResponse.toString(),strWriter.toString());
 
 	}
-
 }

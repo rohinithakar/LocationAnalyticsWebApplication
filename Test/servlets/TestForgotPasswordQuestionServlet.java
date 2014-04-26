@@ -21,10 +21,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import dao.ForgotPasswordQuestionValidationDAO;
-import dao.SetNewPasswordDAO;
+import dao.DeletePromotionDAO;
+import dao.ForgotPasswordQuestionDAO;
 
-public class TestSetNewPasswordServlet {
+public class TestForgotPasswordQuestionServlet {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -39,33 +39,33 @@ public class TestSetNewPasswordServlet {
 	}
 
 	@Test
-	public void testSetNewPasswordCorrectInput() throws Exception {
-		SetNewPasswordDAO dao = Mockito.mock(SetNewPasswordDAO.class);
+	public void testForgotPasswordQuestionValidInput() throws Exception {
+		ForgotPasswordQuestionDAO dao = Mockito.mock(ForgotPasswordQuestionDAO.class);
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		HttpServletResponse response = mock(HttpServletResponse.class);
 		HttpSession session = mock(HttpSession.class);
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("value", "js1234");
-		jsonObject.put("email", "js@yahoo.com");
+		jsonObject.put("userName", "js@yahoo.com");
 		BufferedReader reader = new BufferedReader(new StringReader(jsonObject.toString()));
 
 		when(request.getSession()).thenReturn(session);
 		when(request.getReader()).thenReturn(reader);
 		
-		when(dao.setNewPwd(anyString(), anyString())).thenReturn("success");
+		when(dao.forgotPasswordQuestion((anyString()))).thenReturn("Car name");
 		StringWriter strWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(strWriter);
 		when(response.getWriter()).thenReturn(writer);
 		
-		SetNewPassword servlet  = new SetNewPassword();
+		ForgotPasswordQuestion servlet  = new ForgotPasswordQuestion();
 		servlet.doPost(request, response);
 
 		JSONObject expectedResponse = new JSONObject();
 		expectedResponse.put("errorCode", 200);
-		expectedResponse.put("responseText", "Success");
+		expectedResponse.put("responseText", "Car name");
 		assertNotNull(expectedResponse.toString());
 
 	}
+	
 
 }
