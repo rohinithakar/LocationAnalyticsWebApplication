@@ -22,99 +22,67 @@ import javax.servlet.http.HttpSession;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
+import dao.ForgotPasswordQuestionDAO;
+
 import java.util.logging.Logger;
 /**
  * Servlet implementation class ForgotPasswordQuestion
  */
 public class ForgotPasswordQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		response.setContentType("application/json");
-		
+
 		JSONObject resp = new JSONObject();
-	
-			Connection con = null;
-			ResultSet rs;
-			Statement stmt = null;
-			
-			/*
-			try {
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventPlanning","root","ruh12ruh");
-				stmt = con.createStatement();
-				stmt.setEscapeProcessing(true);
-				if(!con.isClosed()){
-					System.out.println("Successfully Connected!");
-				}
-			} catch (InstantiationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IllegalAccessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+
+		response.setContentType("application/json");
+		StringBuffer jb = new StringBuffer();
+		String line = null;
+		try {
+			BufferedReader reader = request.getReader();
+			while ((line = reader.readLine()) != null)
+				jb.append(line);
+
+			JSONObject jsonObject = new JSONObject(jb.toString());
+			System.out.println("jsonObject:"+jsonObject.toString());
+
+			String email = jsonObject.getString("email");
+			System.out.println("email:"+email);
+
+
+			ForgotPasswordQuestionDAO dao = new ForgotPasswordQuestionDAO();
+			String question = dao.forgotPasswordQuestion(email);
+
+			if(question != null){
+				resp.put("errorCode",200);
+				resp.put("responseText",question);
+				System.out.println("Response: "+resp);	
 			}
-*/	DatabaseConnection connection = DatabaseConnection.getInstance();
-con = connection.setConnection();
-try {
-	stmt = con.createStatement();
-} catch (SQLException e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-}
-				
-			response.setContentType("application/json");
-			StringBuffer jb = new StringBuffer();
-			String line = null;
-			try {
-				BufferedReader reader = request.getReader();
-				while ((line = reader.readLine()) != null)
-					jb.append(line);
-			
-				JSONObject jsonObject = new JSONObject(jb.toString());
-				System.out.println("jsonObject:"+jsonObject.toString());
+			else{
+				resp.put("errorCode",300);
+				resp.put("responseText","failure");
+				System.out.println("Response: "+resp);			
+			}
+			response.getWriter().write(resp.toString());
 
-				String email = jsonObject.getString("email");
-				System.out.println("email:"+email);
-					
-					
-					String query = "Select securityquestion from \"BusinessUser\" where username = '"+email+"'";
-					System.out.println("Query: "+query);
-					
-					rs = stmt.executeQuery(query);
-					
-					if(rs.next()){
-						
-						String question = rs.getString("securityQuestion");
-						System.out.println("Question:"+question);
-						resp.put("errorCode",200);
-						resp.put("responseText",question);
-						response.getWriter().write(resp.toString());
-						System.out.println("Response: "+resp);	
-					}
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-				
-			
-	
-	
-		
-		
+
+
+
+
+
+
 	}
 }
 

@@ -18,18 +18,23 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 import dao.LoginDAO;
+import dao.RegistrationDAO;
 
 /**
  * Servlet implementation class GetLoginDetails
  */
 public class GetLoginDetails extends HttpServlet {
-	
+
 	LoginDAO dao = new LoginDAO();
-	
+
+	public GetLoginDetails() {
+		this(new LoginDAO());
+	}
+
 	GetLoginDetails(LoginDAO dao) {
 		this.dao = dao;
 	}
-	
+
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +42,7 @@ public class GetLoginDetails extends HttpServlet {
 		HttpSession session = request.getSession();
 		JSONObject resp = new JSONObject();
 
-		
+
 		response.setContentType("application/json");
 		StringBuffer jb = new StringBuffer();
 		String line = null;
@@ -60,8 +65,8 @@ public class GetLoginDetails extends HttpServlet {
 			String securePwd = GetRegistrationDetails.encryptPassword(password);
 
 			int userId = dao.getLogin(email, securePwd);
-			
-			
+
+
 			if(userId == -1){
 				resp.put("errorCode",300);
 				resp.put("responseText","Failure");
@@ -71,7 +76,7 @@ public class GetLoginDetails extends HttpServlet {
 				resp.put("errorCode",200);
 				resp.put("responseText","Success");	
 			}
-			
+
 			response.getWriter().write(resp.toString());
 
 		} catch (JSONException e1) {

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import dao.DeletePromotionDAO;
 
 /**
  * Servlet implementation class GetLoginDetails
@@ -25,10 +26,11 @@ public class DeletePromotion extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+
 		response.setContentType("application/json");
 		StringBuffer jb = new StringBuffer();
 		String line = null;
+		JSONObject resp = new JSONObject();
 		try {
 			BufferedReader reader = request.getReader();
 			while ((line = reader.readLine()) != null)
@@ -45,58 +47,43 @@ public class DeletePromotion extends HttpServlet {
 
 			String promotionid = jsonObject.getString("promotionid");
 			System.out.println("promotionid:"+promotionid);
-			
+
 
 			Connection con = null;
 			ResultSet rs;
 			Statement stmt = null;
 
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			
-			DatabaseConnection connection = DatabaseConnection.getInstance();
-			con = connection.setConnection();
-			stmt = con.createStatement();
-			stmt.setEscapeProcessing(true);
-			if(!con.isClosed()){
-				System.out.println("Successfully Connected!");
+			DeletePromotionDAO dao = new DeletePromotionDAO();
+
+			String ans = dao.deletePromotion(promotionid);
+			if(ans.equalsIgnoreCase("true")){
+				System.out.println("Promotion Delete Successful");
+				resp.put("errorCode",200);
+				resp.put("responseText","Success");
 			}
-
-			String query = "UPDATE \"PromotionalDeals\" SET  dealstatus = false WHERE promotionid ="+promotionid;
-			System.out.println("Query: "+query);
-			int rowCount = stmt.executeUpdate(query);
-			System.out.println("count: "+rowCount);
-			JSONObject resp = new JSONObject();
-
-			if(rowCount>0){
-				if(rowCount>0){
-					System.out.println("Promotion Delete Successful");
-					resp.put("errorCode",200);
-					resp.put("responseText","Success");
-				}
-				else{
-					System.out.println("Promotion Delete failed");
-					resp.put("errorCode",300);
-					resp.put("responseText","Failure");
-				}
-
+			else{
+				System.out.println("Promotion Delete failed");
+				resp.put("errorCode",300);
+				resp.put("responseText","Failure");
 			}
-			response.getWriter().write(resp.toString());
+		response.getWriter().write(resp.toString());
 
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InstantiationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}  catch (InstantiationException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (IllegalAccessException e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+	} catch (ClassNotFoundException e3) {
+		// TODO Auto-generated catch block
+		e3.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+}
 }

@@ -32,6 +32,10 @@ public class GetRegistrationDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	RegistrationDAO dao = new RegistrationDAO();
 
+	public GetRegistrationDetails() {
+		this(new RegistrationDAO());
+	}
+	
 	public GetRegistrationDetails(RegistrationDAO dao) {
 		this.dao = dao;
 	}

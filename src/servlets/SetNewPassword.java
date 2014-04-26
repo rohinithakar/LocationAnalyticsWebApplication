@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
+import dao.SetNewPasswordDAO;
+
 /**
  * Servlet implementation class SetNewPassword
  */
@@ -47,32 +49,12 @@ public class SetNewPassword extends HttpServlet {
 				String email = jsonObject.getString("email");
 				String securePwd = GetRegistrationDetails.encryptPassword(newPwd);
 				
-
-				Connection con = null;
-				ResultSet rs;
-				Statement stmt = null;
-				int rowCount = 0;
 				JSONObject resp = new JSONObject();
-
-/*
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventPlanning","root","ruh12ruh");
-				stmt = con.createStatement();
-				stmt.setEscapeProcessing(true);
-				if(!con.isClosed()){
-					System.out.println("Successfully Connected!");
-				}*/
-				DatabaseConnection connection = DatabaseConnection.getInstance();
-				con = connection.setConnection();
-				stmt = con.createStatement();
+				SetNewPasswordDAO dao = new SetNewPasswordDAO();
+				String ans = dao.setNewPwd(securePwd, email);
 				
-
-				String query = "update \"BusinessUser\" set password = '"+securePwd+"' where username = '"+email+"'";
-				System.out.println("Query: "+query);
-				rowCount = stmt.executeUpdate(query);
 				
-				if(rowCount>0){
+				if(ans.equalsIgnoreCase("success")){
 					System.out.println("success");
 						resp.put("errorCode",200);
 						resp.put("responseText","Success");
