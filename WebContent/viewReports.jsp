@@ -113,13 +113,6 @@ function generateCharts(){
     	  console.log("Here it is....");
     	  console.log(promotionDetails);
         var data = google.visualization.arrayToDataTable(
-//         [
-//           ['PromotionName', 'Subscription Count'],
-//           ["abc",  1000],
-//           ["sdsds",  1170],
-//           ["dfdfd",  660],
-//           ["dhhgfgkj",  1030]
-//         ]
 promotionDetails
         );
 
@@ -127,17 +120,6 @@ promotionDetails
           title: 'Promotion Subscription Analysis',
           hAxis: {title: 'Promotions', titleTextStyle: {color: 'blue'}},
           vAxis: {title: 'SubscriptionCount',titleTextStyle: {color: 'blue'}},
-//           axesDefaults: 
-//           { 
-//               useSeriesColor: true, 
-//               min: 0, 
-//               max: 1000, 
-//               tickInterval: 1, 
-//               tickOptions: { 
-//                       formatString: '%d' 
-//                   } 
-//           },
-
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('chartDetails'));
